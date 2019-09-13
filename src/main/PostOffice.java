@@ -1,6 +1,6 @@
 package main;
 
-public class PostOffice implements  PostStorage{
+public class PostOffice implements PostStorage {
     Address address;
 
     public PostOffice(Address address) {
@@ -16,7 +16,9 @@ public class PostOffice implements  PostStorage{
         posts.add(post);
     }
 
-    public void printAllPosts() {
-        //prints all the posts
+    public void printAllPosts(Printer printer) {
+        for (Post post : posts) {
+            printer.addPost(post);
+        }
     }
 }
