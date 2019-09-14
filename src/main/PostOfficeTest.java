@@ -12,6 +12,7 @@ public class PostOfficeTest {
     Stamp stamp;
     Printer printer;
 
+
     @Before
     public void setUp() {
         address = new Address(1, "Line One", "WestBengal", "Kolkata", 700032);
@@ -26,8 +27,6 @@ public class PostOfficeTest {
 
     @Test
     public void allThePostShouldBePrinted() {
-        Printer initialPrinter = printer;
         postOffice.printAllPosts(printer);
-        Assert.assertNotNull(printer);
     }
 }
