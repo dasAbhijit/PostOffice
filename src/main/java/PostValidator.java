@@ -1,5 +1,3 @@
-package main;
-
 import java.util.List;
 
 public class PostValidator {
@@ -8,9 +6,7 @@ public class PostValidator {
             return false;
         }
         if (isToPostOfficePresentInPost(post)) {
-            if (isToPostOfficeExisting(post, postOfficeList)) {
-                return true;
-            }
+            return isToPostOfficeExisting(post, postOfficeList);
         }
         return false;
     }
@@ -27,12 +23,12 @@ public class PostValidator {
 
     //check if the To Post Office address is present in Mail
     private boolean isToPostOfficePresentInPost(Post post) {
-        return post.getToPostOfficeAddress() != null ? true : false;
+        return post.getToPostOfficeAddress() != null;
     }
 
     //check if the mail is blank
     private boolean isPostBlank(Post post) {
-        return (post.getBody() == "" && post.getSubject() == "") ? true : false;
+        return post.getBody() == "" && post.getSubject() == "";
     }
 
 }

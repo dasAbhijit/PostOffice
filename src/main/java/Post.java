@@ -1,5 +1,3 @@
-package main;
-
 public class Post {
     private int id;
     private Address fromAddress;

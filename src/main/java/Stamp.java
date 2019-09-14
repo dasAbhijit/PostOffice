@@ -1,5 +1,3 @@
-package main;
-
 public class Stamp {
     private int id;
     private Type type;

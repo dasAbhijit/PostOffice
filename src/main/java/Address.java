@@ -1,5 +1,3 @@
-package main;
-
 public class Address {
     private int id;
     private String lineOne;

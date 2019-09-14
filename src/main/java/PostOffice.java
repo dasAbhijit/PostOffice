@@ -1,5 +1,3 @@
-package main;
-
 public class PostOffice implements PostStorage {
     Address address;
 
