@@ -1,5 +1,8 @@
-public class PostOffice implements PostStorage {
+public class PostOffice extends PostStorage {
     Address address;
+    PostManager postManager;
+    Printer printer;
+
 
     public PostOffice(Address address) {
         this.address = address;
@@ -9,14 +12,4 @@ public class PostOffice implements PostStorage {
         return address;
     }
 
-    @Override
-    public void addPost(Post post) {
-        posts.add(post);
-    }
-
-    public void printAllPosts(Printer printer) {
-        for (Post post : posts) {
-            printer.addPost(post);
-        }
-    }
 }

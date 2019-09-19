@@ -1,12 +1,12 @@
 import org.junit.Before;
-import org.junit.Test;
+
 
 public class PostOfficeTest {
-    PostOffice postOffice;
     Address address;
     Post post1;
     Post post2;
     Stamp stamp;
+    PostOffice postOffice;
     Printer printer;
 
 
@@ -22,8 +22,4 @@ public class PostOfficeTest {
         printer = new Printer();
     }
 
-    @Test
-    public void allThePostShouldBePrinted() {
-        postOffice.printAllPosts(printer);
-    }
 }

@@ -1,6 +1,16 @@
-public class Printer implements PostStorage {
-    @Override
-    public void addPost(Post post) {
-        posts.add(post);
+public class Printer extends PostStorage {
+
+    public void printPosts(Post post) {
+        System.out.print(post);
+    }
+
+    public void printPostById(int id) {
+        System.out.print(getPostById(id));
+    }
+
+    public void printAllPosts() {
+        for (Post post : posts) {
+            System.out.print(post);
+        }
     }
 }
