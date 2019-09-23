@@ -1,9 +1,12 @@
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
+import org.mockito.Mock;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import static org.mockito.Mockito.*;
 
 public class PostManagerTest {
     PostOffice postOffice;
@@ -11,37 +14,41 @@ public class PostManagerTest {
     PostManager postManager;
     Address address;
     Stamp stamp;
+    Address addressDiff;
+    @Mock
     PostValidator postValidator;
     List<PostOffice> postOfficeList;
-    Address address2;
 
     @Before
-    public void testSetUp() {
-        postValidator = new PostValidator();
+    public void setUp() {
+        postValidator = mock(PostValidator.class);
         postManager = new PostManager(postValidator);
-        address = new Address(1, "line one", "West Bengal", "kolkata", 700032);
-        post = new Post(1, address, address, "hi", "body", stamp, address, address);
+        address = mock(Address.class);
+        post = new Post(1, address, address, "Hi", "Body", stamp, address, address);
         postOffice = new PostOffice(address);
         postOfficeList = new ArrayList<PostOffice>();
         postOfficeList.add(postOffice);
-        address2 = new Address(1, "line one", "West Bengal", "kolkata", 700032);
     }
 
     @Test
     public void ShouldBeAbleToFindDestinationPostOffice() {
+        when(postValidator.isEligibleToSendPost(post, postOfficeList)).thenReturn(true);
         Assert.assertEquals(postOffice, postManager.findDestinationPostOffice(post, postOfficeList));
     }
 
     @Test
     public void ShouldBeAbleToThrowNullWhenDestinationPostOfficeIsNotFound() {
-        post = new Post(2, address2, address2, "Hi", "Body", stamp, address2, address2);
+        addressDiff = mock(Address.class);
+        post = new Post(2, addressDiff, addressDiff, "Hi", "Body", stamp, addressDiff, addressDiff);
+        when(postValidator.isEligibleToSendPost(post, postOfficeList)).thenReturn(true);
         Assert.assertNull(postManager.findDestinationPostOffice(post, postOfficeList));
+        verify(postValidator, times(1)).isEligibleToSendPost(post, postOfficeList);
     }
 
     @Test
     public void shouldBeAbleToSendPost() {
-        Assert.assertNull(postOffice.getPostById(1));
+        postOffice = mock(PostOffice.class);
         postManager.sendPost(post, postOffice);
-        Assert.assertEquals(post, postOffice.getPostById(1));
+        verify(postOffice, times(1)).addPost(post);
     }
 }

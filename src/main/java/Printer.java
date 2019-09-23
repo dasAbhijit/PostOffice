@@ -4,9 +4,6 @@ public class Printer extends PostStorage {
         System.out.print(post);
     }
 
-    public void printPostById(int id) {
-        System.out.print(getPostById(id));
-    }
 
     public void printAllPosts() {
         for (Post post : posts) {
