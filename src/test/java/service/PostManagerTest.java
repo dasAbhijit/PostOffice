@@ -4,19 +4,24 @@ import model.*;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
+import org.junit.runner.RunWith;
 import org.mockito.Mock;
+import org.mockito.runners.MockitoJUnitRunner;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import static org.mockito.Mockito.*;
 
+@RunWith(MockitoJUnitRunner.class)
 public class PostManagerTest {
     PostOffice postOffice;
     Post post;
     PostManager postManager;
+    @Mock
     Address address;
     Stamp stamp;
+    @Mock
     Address addressDiff;
     @Mock
     PostValidator postValidator;
@@ -26,10 +31,7 @@ public class PostManagerTest {
 
     @Before
     public void setUp() {
-        postValidator = mock(PostValidator.class);
-        printer = mock(Printer.class);
         postManager = new PostManager(postValidator, printer);
-        address = mock(Address.class);
         post = new Post(1, address, address, "Hi", "Body", stamp, address, address);
         postOffice = new PostOffice(address);
         postOfficeList = new ArrayList<PostOffice>();
@@ -44,7 +46,6 @@ public class PostManagerTest {
 
     @Test
     public void ShouldBeAbleToThrowNullWhenDestinationPostOfficeIsNotFound() {
-        addressDiff = mock(Address.class);
         post = new Post(2, addressDiff, addressDiff, "Hi", "Body", stamp, addressDiff, addressDiff);
         when(postValidator.isEligibleToSendPost(post, postOfficeList)).thenReturn(true);
         Assert.assertNull(postManager.findDestinationPostOffice(post, postOfficeList));
