@@ -1,3 +1,6 @@
+package service;
+
+import model.*;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -18,9 +21,9 @@ public class PostValidatorTest {
 
     @Before
     public void setUp() {
-        firstAddress = new Address(1, "Address Line 1", "West Bengal", "Kolkata", 700032);
-        secondAddress = new Address(2, "Address Line 2", "Rajasthan", "Jaipur", 302005);
-        thirdAddress = new Address(3, "Address Line 3", "Karnataka", "Bangalore", 560095);
+        firstAddress = new Address(1, "model.Address Line 1", "West Bengal", "Kolkata", 700032);
+        secondAddress = new Address(2, "model.Address Line 2", "Rajasthan", "Jaipur", 302005);
+        thirdAddress = new Address(3, "model.Address Line 3", "Karnataka", "Bangalore", 560095);
         postOfficeDatabase = new ArrayList<PostOffice>();
         firstPostOffice = new PostOffice(firstAddress);
         secondPostOffice = new PostOffice(secondAddress);

@@ -1,3 +1,8 @@
+package service;
+
+import model.Post;
+import model.PostOffice;
+
 import java.util.List;
 
 public class PostValidator {
@@ -11,7 +16,7 @@ public class PostValidator {
         return false;
     }
 
-    //check if the To Post Office address exists
+    //check if the To model.Post Office address exists
     private boolean isToPostOfficeExisting(Post post, List<PostOffice> postOfficeList) {
         for (PostOffice postOffice : postOfficeList) {
             if (post.getToPostOfficeAddress().equals(postOffice.getAddress())) {
@@ -21,7 +26,7 @@ public class PostValidator {
         return false;
     }
 
-    //check if the To Post Office address is present in Mail
+    //check if the To model.Post Office address is present in Mail
     private boolean isToPostOfficePresentInPost(Post post) {
         return post.getToPostOfficeAddress() != null;
     }

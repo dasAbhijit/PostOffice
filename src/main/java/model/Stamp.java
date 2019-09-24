@@ -1,3 +1,5 @@
+package model;
+
 public class Stamp {
     private int id;
     private Type type;

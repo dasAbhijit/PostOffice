@@ -1,3 +1,6 @@
+package service;
+
+import model.*;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -18,11 +21,14 @@ public class PostManagerTest {
     @Mock
     PostValidator postValidator;
     List<PostOffice> postOfficeList;
+    @Mock
+    Printer printer;
 
     @Before
     public void setUp() {
         postValidator = mock(PostValidator.class);
-        postManager = new PostManager(postValidator);
+        printer = mock(Printer.class);
+        postManager = new PostManager(postValidator, printer);
         address = mock(Address.class);
         post = new Post(1, address, address, "Hi", "Body", stamp, address, address);
         postOffice = new PostOffice(address);
@@ -50,5 +56,11 @@ public class PostManagerTest {
         postOffice = mock(PostOffice.class);
         postManager.sendPost(post, postOffice);
         verify(postOffice, times(1)).addPost(post);
+    }
+
+    @Test
+    public void shouldBeAbleToPrintPost() {
+        postManager.printPost(post);
+        verify(printer, times(1)).printPosts(post);
     }
 }

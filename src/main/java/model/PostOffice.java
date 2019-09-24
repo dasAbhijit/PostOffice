@@ -1,7 +1,11 @@
+package model;
+
+import service.PostManager;
+
 public class PostOffice extends PostStorage {
-    Address address;
-    PostManager postManager;
-    Printer printer;
+    private Address address;
+    private PostManager postManager;
+    private Printer printer;
 
 
     public PostOffice(Address address) {
